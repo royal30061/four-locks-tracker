@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Official Portal - Lock 2</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1> Lock 2 Portal</h1>
+        <p>Public Accounts Transparency System</p>
+    </header>
+    
+    <div class="portal-container">
+        <!-- Login Form -->
+        <div id="loginSection" class="login-form">
+            <h2>Government Official Login</h2>
+            <p style="color: #888; margin-bottom: 20px;">Access your real-time account dashboard</p>
+            
+            <div id="loginError" class="error-message" style="display: none;"></div>
+            
+            <div class="form-group">
+                <label for="officialId">Official ID</label>
+                <input type="text" id="officialId" placeholder="Enter your official ID">
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter your password">
+            </div>
+            
+            <button class="btn" onclick="login()">Access Dashboard</button>
+            
+            <p style="margin-top: 20px; font-size: 0.9em; color: #888;">
+                <strong>Demo Credentials:</strong><br>
+                ID: <code>GOV001</code> | Password: <code>password123</code>
+            </p>
+        </div>
+        
+        <!-- Dashboard (Hidden by default) -->
+        <div id="dashboardSection" class="dashboard" style="display: none;">
+            <h2>Account Dashboard</h2>
+            <p>Welcome, <span id="officialName">Official</span></p>
+            
+            <!-- Threshold Alert -->
+            <div id="thresholdAlert" class="threshold-alert" style="display: none;">
+                ️ ALERT: Your account has exceeded the 3× wealth threshold!
+                <br><small>Automatic investigation triggered. Explanation required.</small>
+            </div>
+            
+            <div class="account-card">
+                <h3>Current Account Balance</h3>
+                <div class="balance-display">₦<span id="currentBalance">0.00</span></div>
+                <p style="color: #888;">Last updated: <span id="lastUpdate">Real-time</span></p>
+            </div>
+            
+            <div class="account-card">
+                <h3>Threshold Information</h3>
+                <p><strong>Pre-office baseline:</strong> ₦<span id="baselineAmount">5,000,000</span></p>
+                <p><strong>Current balance:</strong> ₦<span id="currentForThreshold">0</span></p>
+                <p><strong>Threshold (3×):</strong> <span id="thresholdAmount">15,000,000</span></p>
+                <p id="thresholdStatus" style="color: #4CAF50; font-weight: bold; margin-top: 10px;">
+                    ✓ Within acceptable range
+                </p>
+            </div>
+            
+            <div class="account-card">
+                <h3>Monthly Transaction History</h3>
+                <div id="transactionHistory">
+                    <p>Loading transactions...</p>
+                </div>
+            </div>
+            
+            <button class="btn" onclick="logout()" style="margin-top: 20px;">Logout</button>
+            <a href="index.html" class="back-link">← Back to Four Locks</a>
+        </div>
+    </div>
+    
+    <footer>
+        <p>Transparency is non-negotiable.</p>
+    </footer>
+    
+    <script>
+        // Demo data - in real system, this would come from a database
+        const demoOfficials = {
+            'GOV001': {
+                name: 'Senator Example',
+                password: 'password123',
+                baseline: 5000000,
+                currentBalance: 12000000,
+                transactions: [
+                    { month: 'January 2026', amount: 11500000 },
+                    { month: 'February 2026', amount: 11800000 },
+                    { month: 'March 2026', amount: 12000000 }
+                ]
+            },
+            'GOV002': {
+                name: 'Governor Demo',
+                password: 'demo123',
+                baseline: 10000000,
+                currentBalance: 35000000, // This exceeds 3× threshold
+                transactions: [
+                    { month: 'January 2026', amount: 25000000 },
+                    { month: 'February 2026', amount: 30000000 },
+                    { month: 'March 2026', amount: 35000000 }
+                ]
+            }
+        };
+        
+        let currentOfficial = null;
+        
+        function login() {
+            const officialId = document.getElementById('officialId').value.trim();
+            const password = document.getElementById('password').value;
+            const errorDiv = document.getElementById('loginError');
+            
+            // Check credentials
+            if (demoOfficials[officialId] && demoOfficials[officialId].password === password) {
+                currentOfficial = demoOfficials[officialId];
+                showDashboard();
+                errorDiv.style.display = 'none';
+            } else {
+                errorDiv.textContent = 'Invalid Official ID or Password';
+                errorDiv.style.display = 'block';
+            }
+        }
+        
+        function showDashboard() {
+            document.getElementById('loginSection').style.display = 'none';
+            document.getElementById('dashboardSection').style.display = 'block';
+            
+            // Update dashboard with official's data
+            document.getElementById('officialName').textContent = currentOfficial.name;
+            document.getElementById('currentBalance').textContent = 
+                currentOfficial.currentBalance.toLocaleString();
+            document.getElementById('baselineAmount').textContent = 
+                currentOfficial.baseline.toLocaleString();
+            document.getElementById('currentForThreshold').textContent = 
+                currentOfficial.currentBalance.toLocaleString();
+            
+            const threshold = currentOfficial.baseline * 3;
+            document.getElementById('thresholdAmount').textContent = 
+                threshold.toLocaleString();
+            
+            // Check threshold
+            const thresholdStatus = document.getElementById('thresholdStatus');
+            const thresholdAlert = document.getElementById('thresholdAlert');
+            
+            if (currentOfficial.currentBalance > threshold) {
+                thresholdAlert.style.display = 'block';
+                thresholdStatus.textContent = '⚠️ EXCEEDED: 3× threshold breached!';
+                thresholdStatus.style.color = '#ff4444';
+                
+                // Play alert sound (optional)
+                playAlertSound();
+            } else {
+                thresholdAlert.style.display = 'none';
+                thresholdStatus.textContent = '✓ Within acceptable range';
+                thresholdStatus.style.color = '#4CAF50';
+            }
+            
+            // Load transaction history
+            loadTransactions();
+        }
+        
+        function loadTransactions() {
+            const historyDiv = document.getElementById('transactionHistory');
+            let html = '<ul style="list-style: none; padding: 0;">';
+            
+            currentOfficial.transactions.forEach(txn => {
+                html += `
+                    <li style="padding: 10px; border-bottom: 1px solid #333; display: flex; justify-content: space-between;">
+                        <span>${txn.month}</span>
+                        <span style="color: #4CAF50; font-weight: bold;">₦${txn.amount.toLocaleString()}</span>
+                    </li>
+                `;
+            });
+            
+            html += '</ul>';
+            historyDiv.innerHTML = html;
+        }
+        
+        function logout() {
+            currentOfficial = null;
+            document.getElementById('loginSection').style.display = 'block';
+            document.getElementById('dashboardSection').style.display = 'none';
+            document.getElementById('officialId').value = '';
+            document.getElementById('password').value = '';
+        }
+        
+        function playAlertSound() {
+            // Simple beep using Web Audio API
+            try {
+                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+                
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+                
+                oscillator.frequency.value = 800;
+                oscillator.type = 'sine';
+                
+                gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.5);
+                
+                oscillator.start(audioContext.currentTime);
+                oscillator.stop(audioContext.currentTime + 0.5);
+            } catch (e) {
+                // Silent fail if audio not supported
+            }
+        }
+        
+        // Allow Enter key to submit login
+        document.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                login();
+            }
+        });
+    </script>
+</body>
+</html>

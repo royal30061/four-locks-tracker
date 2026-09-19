@@ -33,3 +33,132 @@ body {
        color: #888;
        font-size: 0.9em;
    }
+/* Clickable lock styling */
+.clickable {
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.clickable:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 68, 68, 0.3);
+}
+
+.clickable:active {
+    transform: translateY(0);
+}
+
+.click-hint {
+    color: #ff4444;
+    font-weight: bold;
+    margin-top: 10px;
+    font-size: 0.9em;
+}
+
+/* Portal page styles */
+.portal-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.login-form, .dashboard {
+    background-color: #1e1e1e;
+    padding: 30px;
+    border-radius: 8px;
+    border-left: 4px solid #ff4444;
+    margin-top: 30px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #ff4444;
+    font-weight: bold;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px;
+    background-color: #121212;
+    border: 1px solid #333;
+    border-radius: 4px;
+    color: #e0e0e0;
+    font-size: 16px;
+}
+
+.btn {
+    background-color: #ff4444;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+    font-weight: bold;
+}
+
+.btn:hover {
+    background-color: #ff6666;
+}
+
+.account-card {
+    background-color: #121212;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    border: 1px solid #333;
+}
+
+.account-card h3 {
+    color: #ff4444;
+    margin-top: 0;
+}
+
+.balance-display {
+    font-size: 2em;
+    font-weight: bold;
+    color: #4CAF50;
+    margin: 15px 0;
+}
+
+.threshold-alert {
+    background-color: #ff4444;
+    color: white;
+    padding: 15px;
+    border-radius: 8px;
+    margin: 20px 0;
+    font-weight: bold;
+    text-align: center;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+.back-link {
+    display: inline-block;
+    margin-top: 20px;
+    color: #ff4444;
+    text-decoration: none;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
+
+.error-message {
+    background-color: #ff4444;
+    color: white;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    text-align: center;
+}
