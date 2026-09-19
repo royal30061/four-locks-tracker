@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Public Accounts Tracker | Government Accountability</title>
+    <title>Public Accounts Tracker</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -14,21 +14,52 @@
     </header>
 
     <main>
+        <!-- FEATURE 2: Statistics Dashboard -->
+        <div class="stats-dashboard">
+            <div class="stat-card"><span class="stat-num" id="stat-total">0</span><span class="stat-label">Total Officials</span></div>
+            <div class="stat-card flagged"><span class="stat-num" id="stat-flagged">0</span><span class="stat-label">Flagged</span></div>
+            <div class="stat-card"><span class="stat-num" id="stat-wealth">₦0</span><span class="stat-label">Total Public Wealth</span></div>
+            <div class="stat-card excess"><span class="stat-num" id="stat-excess">₦0</span><span class="stat-label">Unexplained Excess</span></div>
+        </div>
+
         <div class="info-banner">
             <h3>⚖️ The 3x Threshold Rule</h3>
             <p>If an official's wealth exceeds <strong>3 times</strong> what they had before taking office, an automatic investigation is triggered.</p>
         </div>
 
-        <h2>Active Government Officials</h2>
-        <div id="officials-list">
-            <!-- Officials will be loaded here by JavaScript -->
+        <!-- FEATURE 1 & 5: Search, Filter, and Sort -->
+        <div class="controls-bar">
+            <input type="text" id="searchInput" placeholder="🔍 Search by name or position...">
+            <select id="filterStatus">
+                <option value="all">All Status</option>
+                <option value="flagged">Flagged Only</option>
+                <option value="clean">Clean Only</option>
+            </select>
+            <select id="sortStatus">
+                <option value="default">Sort: Default</option>
+                <option value="highest-balance">Sort: Highest Balance</option>
+                <option value="highest-excess">Sort: Biggest Excess</option>
+            </select>
         </div>
+
+        <h2>Active Government Officials</h2>
+        <div id="officials-list"></div>
     </main>
 
-    <footer>
-        <p>Transparency is non-negotiable. Built for consequence.</p>
-    </footer>
+    <!-- FEATURE 4: Report Modal -->
+    <div id="reportModal" class="modal">
+        <div class="modal-content">
+            <h3>Report Suspicious Wealth</h3>
+            <p>Reporting on: <strong id="reportTarget"></strong></p>
+            <textarea id="reportDetails" placeholder="Describe the unexplained asset or suspicious activity..."></textarea>
+            <div class="modal-actions">
+                <button class="btn-action" onclick="submitReport()">Submit Anonymously</button>
+                <button class="btn-action cancel" onclick="closeReportModal()">Cancel</button>
+            </div>
+        </div>
+    </div>
 
+    <footer><p>Transparency is non-negotiable. Built for consequence.</p></footer>
     <script src="script.js"></script>
 </body>
 </html>

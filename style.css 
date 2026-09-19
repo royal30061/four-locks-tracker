@@ -1,0 +1,62 @@
+body { font-family: 'Segoe UI', sans-serif; background-color: #0f172a; color: #e2e8f0; margin: 0; padding: 0; line-height: 1.6; }
+header { background-color: #1e293b; padding: 20px; text-align: center; border-bottom: 3px solid #ef4444; }
+header h1 { margin: 0; color: #f8fafc; font-size: 1.5em; }
+header p { margin: 5px 0 15px; color: #94a3b8; font-size: 0.9em; }
+.official-btn { background-color: #ef4444; color: white; padding: 8px 16px; text-decoration: none; border-radius: 5px; font-weight: bold; }
+main { padding: 15px; max-width: 800px; margin: 0 auto; }
+
+/* FEATURE 2: Stats Dashboard */
+.stats-dashboard { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
+.stat-card { background: #1e293b; padding: 15px; border-radius: 8px; text-align: center; border: 1px solid #334155; }
+.stat-card.flagged { border-color: #ef4444; }
+.stat-card.excess { border-color: #f59e0b; }
+.stat-num { display: block; font-size: 1.2em; font-weight: bold; color: #f8fafc; }
+.stat-label { font-size: 0.75em; color: #94a3b8; }
+
+.info-banner { background-color: #1e293b; border-left: 4px solid #3b82f6; padding: 15px; border-radius: 5px; margin-bottom: 20px; }
+.info-banner h3 { margin-top: 0; color: #3b82f6; font-size: 1em; }
+.info-banner p { margin: 0; font-size: 0.9em; }
+
+/* FEATURE 1 & 5: Controls */
+.controls-bar { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+.controls-bar input, .controls-bar select { padding: 12px; background: #1e293b; border: 1px solid #334155; color: white; border-radius: 5px; font-size: 1em; width: 100%; box-sizing: border-box; }
+
+h2 { color: #f8fafc; border-bottom: 1px solid #334155; padding-bottom: 10px; font-size: 1.2em; }
+
+/* Cards */
+.official-card { background-color: #1e293b; border-radius: 8px; padding: 15px; margin-bottom: 15px; border: 1px solid #334155; }
+.official-card.breached { border: 2px solid #ef4444; }
+.card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+.card-header h3 { margin: 0; font-size: 1.1em; color: #f8fafc; }
+.position-badge { background: #334155; padding: 4px 8px; border-radius: 4px; font-size: 0.75em; }
+.financials { display: grid; grid-template-columns: 1fr; gap: 8px; margin-bottom: 10px; }
+.fin-item { background: #0f172a; padding: 10px; border-radius: 5px; }
+.fin-item .label { display: block; font-size: 0.75em; color: #94a3b8; }
+.fin-item .value { font-weight: bold; font-size: 1em; color: #f8fafc; }
+.fin-item .value.highlight { color: #3b82f6; }
+
+.alarm-box { background-color: #ef4444; color: white; padding: 10px; border-radius: 5px; font-weight: bold; text-align: center; margin-bottom: 10px; font-size: 0.9em; }
+.status-box { background-color: #10b981; color: white; padding: 10px; border-radius: 5px; text-align: center; font-weight: bold; margin-bottom: 10px; font-size: 0.9em; }
+
+/* Interactive Buttons */
+.action-buttons { display: flex; gap: 10px; margin-bottom: 10px; }
+.btn-action { flex: 1; padding: 10px; background: #334155; color: white; border: none; border-radius: 5px; font-size: 0.85em; cursor: pointer; }
+.btn-action.report-btn { background: #f59e0b; color: #000; font-weight: bold; }
+
+/* FEATURE 3: Timeline */
+.timeline-container { background: #0f172a; padding: 10px; border-radius: 5px; margin-bottom: 10px; border-left: 3px solid #3b82f6; }
+.timeline-container h4 { margin: 0 0 10px 0; font-size: 0.9em; color: #3b82f6; }
+.timeline-list { list-style: none; padding: 0; margin: 0; }
+.timeline-list li { display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px solid #1e293b; font-size: 0.9em; }
+
+.profile-info { font-size: 0.8em; color: #94a3b8; margin: 0; }
+
+/* FEATURE 4: Modal */
+.modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); justify-content: center; align-items: center; z-index: 1000; }
+.modal-content { background: #1e293b; padding: 20px; border-radius: 8px; width: 90%; max-width: 400px; border: 1px solid #ef4444; }
+.modal-content h3 { margin-top: 0; color: #ef4444; }
+.modal-content textarea { width: 100%; height: 100px; background: #0f172a; border: 1px solid #334155; color: white; padding: 10px; border-radius: 5px; box-sizing: border-box; margin-bottom: 15px; }
+.modal-actions { display: flex; gap: 10px; }
+.modal-actions .cancel { background: #64748b; }
+
+footer { text-align: center; padding: 20px; color: #64748b; font-size: 0.8em; margin-top: 40px; }
