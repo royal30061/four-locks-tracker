@@ -6,8 +6,8 @@ const officialsDB = [
         name: "Sen. Adebayo Johnson",
         position: "Senator",
         constituency: "Abuja Municipal",
-        preOfficeWealth: 5000000, // 5 Million Naira before office
-        currentBalance: 12000000, // 12 Million now (Safe, threshold is 15M)
+        preOfficeWealth: 5000000,
+        currentBalance: 12000000,
         monthlySalary: 1050000,
         currentLocation: "Abuja",
         postTermLocation: "N/A (Still in office)"
@@ -18,8 +18,8 @@ const officialsDB = [
         name: "Gov. Chinedu Okafor",
         position: "Governor",
         constituency: "Enugu State",
-        preOfficeWealth: 10000000, // 10 Million before office
-        currentBalance: 45000000, // 45 Million now (ALARM! Threshold is 30M)
+        preOfficeWealth: 10000000,
+        currentBalance: 45000000,
         monthlySalary: 2500000,
         currentLocation: "Enugu",
         postTermLocation: "N/A (Still in office)"
@@ -30,24 +30,24 @@ const officialsDB = [
         name: "Rep. Fatima Bello",
         position: "House of Reps",
         constituency: "Kano North",
-        preOfficeWealth: 2000000, // 2 Million before office
-        currentBalance: 15000000, // 15 Million now (ALARM! Threshold is 6M)
+        preOfficeWealth: 2000000,
+        currentBalance: 15000000,
         monthlySalary: 850000,
         currentLocation: "Kano",
         postTermLocation: "N/A (Still in office)"
-    }
-    {
-    id: "MIN004",
-    password: "transparency2026",
-    name: "Dr. Amina Hassan",
-    position: "Minister of Health",
-    constituency: "Kaduna Central",
-    preOfficeWealth: 8000000,
-    currentBalance: 28000000,  // This will trigger ALARM (3x of 8M = 24M)
-    monthlySalary: 1800000,
-    currentLocation: "Abuja",
-    postTermLocation: "Kaduna"
     },
+    {
+        id: "MIN004",
+        password: "transparency2026",
+        name: "Dr. Amina Hassan",
+        position: "Minister of Health",
+        constituency: "Kaduna Central",
+        preOfficeWealth: 8000000,
+        currentBalance: 28000000,
+        monthlySalary: 1800000,
+        currentLocation: "Abuja",
+        postTermLocation: "Kaduna"
+    }
 ];
 
 // Function to format numbers as currency (Naira)
@@ -58,15 +58,13 @@ function formatMoney(amount) {
 // Function to render the public dashboard
 function loadPublicDashboard() {
     const listContainer = document.getElementById('officials-list');
-    if (!listContainer) return; // Stop if we are not on the homepage
+    if (!listContainer) return;
 
-    listContainer.innerHTML = ''; // Clear existing
+    listContainer.innerHTML = '';
 
     officialsDB.forEach(official => {
         const threshold = official.preOfficeWealth * 3;
         const isBreached = official.currentBalance > threshold;
-        
-        // Calculate how much they exceeded by
         const excess = isBreached ? official.currentBalance - threshold : 0;
 
         const card = document.createElement('div');
@@ -95,7 +93,7 @@ function loadPublicDashboard() {
 
             ${isBreached ? `
                 <div class="alarm-box">
-                    🚨 THRESHOLD BREACHED! Automatic Investigation Triggered.
+                     THRESHOLD BREACHED! Automatic Investigation Triggered.
                     <br><small>Excess wealth: ${formatMoney(excess)}</small>
                 </div>
             ` : `
@@ -131,7 +129,6 @@ function handleLogin() {
     const official = officialsDB.find(o => o.id === id && o.password === pass);
 
     if (official) {
-        // Login successful
         loginForm.style.display = 'none';
         dashboard.style.display = 'block';
         
@@ -146,7 +143,7 @@ function handleLogin() {
         const alertBox = document.getElementById('dashAlert');
         if (official.currentBalance > threshold) {
             alertBox.style.display = 'block';
-            alertBox.innerHTML = `🚨 CRITICAL ALERT: Your account has exceeded the 3x threshold by ${formatMoney(official.currentBalance - threshold)}. An automatic investigation has been flagged to the public.`;
+            alertBox.innerHTML = ` CRITICAL ALERT: Your account has exceeded the 3x threshold by ${formatMoney(official.currentBalance - threshold)}. An automatic investigation has been flagged to the public.`;
         } else {
             alertBox.style.display = 'none';
         }
@@ -156,5 +153,4 @@ function handleLogin() {
     }
 }
 
-// Load dashboard if on homepage
 document.addEventListener('DOMContentLoaded', loadPublicDashboard);
