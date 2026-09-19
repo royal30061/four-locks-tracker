@@ -3,40 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Four Locks | Government Accountability</title>
+    <title>Public Accounts Tracker | Government Accountability</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        <h1>The Four Locks</h1>
-        <p>No one should be permitted to govern from safety.</p>
+        <h1>📊 Public Accounts Tracker</h1>
+        <p>Public office means public money. No hidden wealth.</p>
+        <a href="official-login.html" class="official-btn">Official Login</a>
     </header>
-    
+
     <main>
-        <div class="lock">
-            <h2>🔒 Lock 1: Residential Mandate</h2>
-            <p>Officials and their families must live in their constituency, using public schools and hospitals.</p>
+        <div class="info-banner">
+            <h3>⚖️ The 3x Threshold Rule</h3>
+            <p>If an official's wealth exceeds <strong>3 times</strong> what they had before taking office, an automatic investigation is triggered.</p>
         </div>
-        
-        <div class="lock clickable" onclick="window.location.href='official-portal.html'">
-            <h2>🔒 Lock 2: Public Accounts Transparency</h2>
-            <p>Personal account balances of officials must be visible to the public in real-time, updated monthly.</p>
-            <p class="click-hint">👉 Tap to access Official Portal</p>
-        </div>
-        
-        <div class="lock">
-            <h2>🔒 Lock 3: Exit Prohibition</h2>
-            <p>No official may relocate permanently outside the country for 10 years after their term ends.</p>
-        </div>
-        
-        <div class="lock">
-            <h2> Lock 4: Development Bonus</h2>
-            <p>Financial bonuses are awarded only for measurable, independently verified improvements in the constituency.</p>
+
+        <h2>Active Government Officials</h2>
+        <div id="officials-list">
+            <!-- Officials will be loaded here by JavaScript -->
         </div>
     </main>
 
     <footer>
-        <p>Built for consequence, not comfort.</p>
+        <p>Transparency is non-negotiable. Built for consequence.</p>
     </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
