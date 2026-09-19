@@ -1,4 +1,3 @@
-// MOCK DATABASE: This simulates the backend database
 const officialsDB = [
     {
         id: "SEN001",
@@ -47,15 +46,49 @@ const officialsDB = [
         monthlySalary: 1800000,
         currentLocation: "Abuja",
         postTermLocation: "Kaduna"
+    },
+    {
+        id: "VP001",
+        password: "vp2026",
+        name: "Moses Miracle",
+        position: "Vice President",
+        constituency: "Maitama District",
+        preOfficeWealth: 500000000,
+        currentBalance: 1000000000,
+        monthlySalary: 250000000,
+        currentLocation: "Maitama, Abuja",
+        postTermLocation: "Maitama, Abuja"
+    },
+    {
+        id: "MIN005",
+        password: "women2026",
+        name: "Blessed Otem",
+        position: "Minister of Women Affairs",
+        constituency: "FCT / National",
+        preOfficeWealth: 30000000,
+        currentBalance: 45000000,
+        monthlySalary: 25000000,
+        currentLocation: "Abuja",
+        postTermLocation: "Home State"
+    },
+    {
+        id: "SEN006",
+        password: "enugu2026",
+        name: "Callistus Uchechuku",
+        position: "Senate President",
+        constituency: "Enugu East",
+        preOfficeWealth: 500000000,
+        currentBalance: 1600000000,
+        monthlySalary: 250000000,
+        currentLocation: "Enugu / Abuja",
+        postTermLocation: "Enugu East"
     }
 ];
 
-// Function to format numbers as currency (Naira)
 function formatMoney(amount) {
     return "₦" + amount.toLocaleString('en-US');
 }
 
-// Function to render the public dashboard
 function loadPublicDashboard() {
     const listContainer = document.getElementById('officials-list');
     if (!listContainer) return;
@@ -93,7 +126,7 @@ function loadPublicDashboard() {
 
             ${isBreached ? `
                 <div class="alarm-box">
-                     THRESHOLD BREACHED! Automatic Investigation Triggered.
+                    🚨 THRESHOLD BREACHED! Automatic Investigation Triggered.
                     <br><small>Excess wealth: ${formatMoney(excess)}</small>
                 </div>
             ` : `
@@ -103,7 +136,7 @@ function loadPublicDashboard() {
             `}
 
             <div class="profile-info">
-                <h4>Official Profile & Location</h4>
+                <h4>Official Profile & Location (Lock 1 & 3)</h4>
                 <p><strong>Current Location:</strong> ${official.currentLocation}</p>
                 <p><strong>Post-Term Domicile Plan:</strong> ${official.postTermLocation}</p>
             </div>
@@ -113,7 +146,6 @@ function loadPublicDashboard() {
     });
 }
 
-// Function to handle Official Login
 function handleLogin() {
     const idInput = document.getElementById('officialId');
     const passInput = document.getElementById('password');
@@ -143,7 +175,7 @@ function handleLogin() {
         const alertBox = document.getElementById('dashAlert');
         if (official.currentBalance > threshold) {
             alertBox.style.display = 'block';
-            alertBox.innerHTML = ` CRITICAL ALERT: Your account has exceeded the 3x threshold by ${formatMoney(official.currentBalance - threshold)}. An automatic investigation has been flagged to the public.`;
+            alertBox.innerHTML = `🚨 CRITICAL ALERT: Your account has exceeded the 3x threshold by ${formatMoney(official.currentBalance - threshold)}. An automatic investigation has been flagged to the public.`;
         } else {
             alertBox.style.display = 'none';
         }
