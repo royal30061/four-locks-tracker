@@ -36,6 +36,18 @@ const officialsDB = [
         currentLocation: "Kano",
         postTermLocation: "N/A (Still in office)"
     }
+    {
+    id: "MIN004",
+    password: "transparency2026",
+    name: "Dr. Amina Hassan",
+    position: "Minister of Health",
+    constituency: "Kaduna Central",
+    preOfficeWealth: 8000000,
+    currentBalance: 28000000,  // This will trigger ALARM (3x of 8M = 24M)
+    monthlySalary: 1800000,
+    currentLocation: "Abuja",
+    postTermLocation: "Kaduna"
+    },
 ];
 
 // Function to format numbers as currency (Naira)
