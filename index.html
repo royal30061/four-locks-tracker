@@ -61,7 +61,16 @@
         </div>
     </div>
 
-    <footer><p>Transparency is non-negotiable. Built for consequence.</p></footer>
-    <script src="script.js"></script>
+    <footer><p>Transparency is non-negotiable. Built for consequence.</p></footer>   
+ <script src="script.js"></script>
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js')
+      .then(reg => console.log('Service Worker registered'))
+      .catch(err => console.log('Service Worker registration failed'));
+  });
+}
+</script>
 </body>
 </html>
