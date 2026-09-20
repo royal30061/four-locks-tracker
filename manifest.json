@@ -1,0 +1,17 @@
+{
+     "name": "Public Accounts Tracker",
+     "short_name": "Acct Tracker",
+     "description": "Real-time government financial accountability and 3x threshold tracking.",
+     "start_url": "/four-locks-tracker/index.html",
+     "display": "standalone",
+     "background_color": "#0f172a",
+     "theme_color": "#ef4444",
+     "orientation": "portrait",
+     "icons": [
+       {
+         "src": "icon.png",
+         "sizes": "192x192",
+         "type": "image/png"
+       }
+     ]
+   }
